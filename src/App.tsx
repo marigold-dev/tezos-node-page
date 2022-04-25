@@ -29,14 +29,23 @@ export function App () {
 
       Promise.all(requests).then(results => {
         results.forEach(async (result) => {
-          try {
-            const response = await Promise.all([result.isBootstrappedTask, result.versionTask])
-            const isBootstrapped: IsBootstrapedResponse = response[0].data
-            const versionTask: VersionResponse = response[1].data
+          const response = await Promise.allSettled([result.isBootstrappedTask, result.versionTask])
+
+          // Set the status of the node
+          if (response[0].status === 'fulfilled') {
+            const isBootstrapped = response[0].value.data as IsBootstrapedResponse
             result.node.status = StatusBySyncState(isBootstrapped)
-            result.node.version = 'v' + versionTask.version.major + '.' + versionTask.version.minor
-          } catch (err) {
+          } else {
+            console.log(response[0].reason)
             result.node.status = 'ERROR'
+          }
+
+          // Set the version of the node
+          if (response[1].status === 'fulfilled') {
+            const versionTask = response[1].value.data as VersionResponse
+            result.node.version = 'v' + versionTask.version.major + '.' + versionTask.version.minor
+          } else {
+            console.log(response[1].reason)
           }
           setTezosNodes([...tezosNodes])
         })
