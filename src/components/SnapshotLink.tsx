@@ -2,7 +2,7 @@ import React from 'react'
 import Link from '@mui/material/Link'
 import { useTheme } from '@mui/material/styles'
 
-const SnapshotLink = (props: { url: string, children: string }) => {
+const UrlLink = (props: { url: string, children: string }) => {
   const theme = useTheme()
   const styles = {
     button: {
@@ -33,4 +33,4 @@ const SnapshotLink = (props: { url: string, children: string }) => {
   )
 }
 
-export default SnapshotLink
+export default UrlLink

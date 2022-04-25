@@ -33,6 +33,9 @@ export default function ThemeContext () {
           secondary: {
             main: '#eb3448'
           },
+          info: {
+            main: '#BEBEBE'
+          },
           text: {
             primary: 'rgba(0,0,0,.83)',
             secondary: '#00000'
@@ -48,6 +51,9 @@ export default function ThemeContext () {
           },
           secondary: {
             main: '#eb3448'
+          },
+          info: {
+            main: '#BEBEBE'
           },
           text: {
             primary: '#FFFFFF',
