@@ -11,10 +11,10 @@ import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
 import { ColorModeContext } from '../ThemeContext'
 
-export default function HeaderBar () {
+export default function HeaderBar() {
   const [width, setWidth] = useState<number>(window.innerWidth)
 
-  function handleWindowSizeChange () {
+  function handleWindowSizeChange() {
     setWidth(window.innerWidth)
   }
   useEffect(() => {
@@ -28,38 +28,82 @@ export default function HeaderBar () {
   const theme = useTheme()
   const colorMode = React.useContext(ColorModeContext)
 
-  return (<AppBar position="relative" style={{
-    height: '66px',
-    borderColor: 'white',
-    border: 'solid',
-    borderWidth: '1px',
-    justifyContent: 'center'
-  }}>
-    <Toolbar>
-        <Link style={{ color: theme.palette.text.primary, flexGrow: isMobile() ? 1 : 0, fontFamily: '"Roboto","Helvetica","Arial",sans-serif', display: 'flex', alignItems: 'center' }} href="https://marigold.dev" underline="none">
-          <img style={{ marginRight: '10px' }} src="https://uploads-ssl.webflow.com/616ab4741d375d1642c19027/61793ee65c891c190fcaa1d0_Vector(1).png" alt="Marigold Logo" width="24" height="24"></img>
+  return (
+    <AppBar
+      position="relative"
+      style={{
+        height: '66px',
+        borderColor: 'white',
+        border: 'solid',
+        borderWidth: '1px',
+        justifyContent: 'center',
+      }}
+    >
+      <Toolbar>
+        <Link
+          style={{
+            color: theme.palette.text.primary,
+            flexGrow: isMobile() ? 1 : 0,
+            fontFamily: '"Roboto","Helvetica","Arial",sans-serif',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          href="https://marigold.dev"
+          underline="none"
+        >
+          <img
+            style={{ marginRight: '10px' }}
+            src="https://uploads-ssl.webflow.com/616ab4741d375d1642c19027/61793ee65c891c190fcaa1d0_Vector(1).png"
+            alt="Marigold Logo"
+            width="24"
+            height="24"
+          ></img>
 
-          <Typography style={{ marginRight: isMobile() ? '0px' : '24px' }} variant="h6" color="inherit" noWrap>
+          <Typography
+            style={{ marginRight: isMobile() ? '0px' : '24px' }}
+            variant="h6"
+            color="inherit"
+            noWrap
+          >
             MARIGOLD {isMobile() && <span> STATUS </span>}
           </Typography>
         </Link>
 
-      {!isMobile() && <Separator></Separator> }
+        {!isMobile() && <Separator></Separator>}
 
-      {!isMobile() && <Box style={{
-        paddingLeft: '10px', justifyContent: 'left'
-      }} sx={{ flexGrow: 1 }}>
-        <Typography style={{ color: theme.palette.text.primary, marginLeft: '25px' }} variant="h6" color="inherit" noWrap>
-          Tezos Node
-        </Typography>
-      </Box>
-      }
+        {!isMobile() && (
+          <Box
+            style={{
+              paddingLeft: '10px',
+              justifyContent: 'left',
+            }}
+            sx={{ flexGrow: 1 }}
+          >
+            <Typography
+              style={{ color: theme.palette.text.primary, marginLeft: '25px' }}
+              variant="h6"
+              color="inherit"
+              noWrap
+            >
+              Tezos Node
+            </Typography>
+          </Box>
+        )}
 
-      <Separator></Separator>
+        <Separator></Separator>
 
-      <IconButton sx={{ ml: 1, marginLeft: '24px' }} onClick={colorMode.toggleColorMode} color="inherit">
-        {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-      </IconButton>
-    </Toolbar>
-  </AppBar>)
+        <IconButton
+          sx={{ ml: 1, marginLeft: '24px' }}
+          onClick={colorMode.toggleColorMode}
+          color="inherit"
+        >
+          {theme.palette.mode === 'dark' ? (
+            <Brightness7Icon />
+          ) : (
+            <Brightness4Icon />
+          )}
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  )
 }
